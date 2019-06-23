@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/moco/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/moco/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/moco/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/moco/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/moco/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/moco/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/moco/',
+    scheme: 'Mist',
+    version: '7.1.2',
+    sidebar: {"position":"left","width":280,"display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="廢言個人以為 Android 和 iOS, Windows Phone 最大的差別就是個人化的程度截然不同， 換個 Launcher 就有截然不同的操作體驗了，不喜歡原廠的 Launcher？換掉就是了！ 本篇紀錄與簡單介紹一些個人喜愛的 Android Launcher。 廢言還分章節 !?會想寫 Android Apk 推薦文，主要是因為 Google Play 實在不人性， 竟然無法搜尋自己">
+<meta name="keywords" content="apps,awesome,android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Android] Awesome launcher">
+<meta property="og:url" content="http://kywk.github.io/software/android/awesome_launcher.html">
+<meta property="og:site_name" content="MooCow Notes">
+<meta property="og:description" content="廢言個人以為 Android 和 iOS, Windows Phone 最大的差別就是個人化的程度截然不同， 換個 Launcher 就有截然不同的操作體驗了，不喜歡原廠的 Launcher？換掉就是了！ 本篇紀錄與簡單介紹一些個人喜愛的 Android Launcher。 廢言還分章節 !?會想寫 Android Apk 推薦文，主要是因為 Google Play 實在不人性， 竟然無法搜尋自己">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://lh3.googleusercontent.com/8y0LMB9nF8UBf4VCQFOFkrK5fuf0Q_YuV1fDb_RfRbpBPGndYVFjbyPR_mr1BfeGMF2W36QQ7fWghUTueNMfLYX1x-k49sYO6RT0KLH9_PqeRdcaO9XvFXmfr0xnAdnNimPgPO30pJE4pQ6Xq3lyyzDkeoj0YCvqDAWMbgA7FsxBydYox7TYGVZTlVEDhQFXw8NR4_T-7lWFRoz9-JhPCex8CJ7bfh5si1WzBVZ9d_stieqbrA77YyL1HYPyibdPWp52_aeT5LLFNeR61Cs_BVHlWQSMhZ5w5wZwvFZab0bZV-PfNLpU_MrmZS5eicMXOdKA5bIzkmVBVVB8ZTTVstvja_4TH5i4VndlI1oYt3SII6V3jzJJ8N1XTrezmQTaZAE5xK16xkYwytkv3DDjgghzAYM-GHKv8iv6Fn0EEcKeD4u4r7nAHp7MyArc-ZjUjoy6xGKg3t9CksEf0po1h9y5GNC9fHifC_dcYikObAEJ5AzPE5UMaZ4EGatioB5tH7uUYk99Ir28rAkZuNGDHQlHir44YpGZzt_tEZqABtMFEHB14xgiPeRBMtcrWJuE5VClq4TRMMtxrAYdmdkEGJEtA6DH-E5o=w800-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/yc0JCTrEh_ybYgigESUj6WLNfAvj_0zqKErJJN1v4-EIEZzlDricnO2ng7njqeqAcNnC5w-A8TfXa0lB3RiMb6aSZPeHI9kq3Ge1FT2E2Wk2w4VuSaZK3otK3uUm8wc1X6r4Pc8OucEL8V-ftYlYuE9uFuG14-8mJ6RnKOFFXS-t751OoFdWzdhMJV3ZVyRZyZD5_eFR0KDjdiI3Jgg4Gp986wYlT4nRmJ0yWforloN0uVwjdYpc_TisylBVOTWBOE8ltx7RM1fCPpRSC0WHKVSs-xLIfJKUixto8Qp2Jljim418Nih8ZI1NGkE7cLbOzLY6tvJFDuGxUYtAueVxQQkVrzJTLeX1QFk-mW39HaCeToxx1sMOI7zJdWpyVaEpujEsI-AzwciLmrJ1HkH7yB23yQPVUB2KWi_DZwmAzxWpp00tQ0JrMm4o3PKP60VweY4cEPQtazleOU8WtrhOTeMiIlzC5svHHB6C4DH15pLbZRuQuvidiv4_MGybmu6CknOH28b2Bk212RE2waoPq1_XQ4hXpLLUlZDn0pkjTu8Xz9_PGAdUCYLIC4YwO0AxLLh4p6O1pL-X8oBnJtkopSTHIxZBHbdD=w800-no">
+<meta property="og:updated_time" content="2018-12-31T15:59:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Android] Awesome launcher">
+<meta name="twitter:description" content="廢言個人以為 Android 和 iOS, Windows Phone 最大的差別就是個人化的程度截然不同， 換個 Launcher 就有截然不同的操作體驗了，不喜歡原廠的 Launcher？換掉就是了！ 本篇紀錄與簡單介紹一些個人喜愛的 Android Launcher。 廢言還分章節 !?會想寫 Android Apk 推薦文，主要是因為 Google Play 實在不人性， 竟然無法搜尋自己">
+<meta name="twitter:image" content="https://lh3.googleusercontent.com/8y0LMB9nF8UBf4VCQFOFkrK5fuf0Q_YuV1fDb_RfRbpBPGndYVFjbyPR_mr1BfeGMF2W36QQ7fWghUTueNMfLYX1x-k49sYO6RT0KLH9_PqeRdcaO9XvFXmfr0xnAdnNimPgPO30pJE4pQ6Xq3lyyzDkeoj0YCvqDAWMbgA7FsxBydYox7TYGVZTlVEDhQFXw8NR4_T-7lWFRoz9-JhPCex8CJ7bfh5si1WzBVZ9d_stieqbrA77YyL1HYPyibdPWp52_aeT5LLFNeR61Cs_BVHlWQSMhZ5w5wZwvFZab0bZV-PfNLpU_MrmZS5eicMXOdKA5bIzkmVBVVB8ZTTVstvja_4TH5i4VndlI1oYt3SII6V3jzJJ8N1XTrezmQTaZAE5xK16xkYwytkv3DDjgghzAYM-GHKv8iv6Fn0EEcKeD4u4r7nAHp7MyArc-ZjUjoy6xGKg3t9CksEf0po1h9y5GNC9fHifC_dcYikObAEJ5AzPE5UMaZ4EGatioB5tH7uUYk99Ir28rAkZuNGDHQlHir44YpGZzt_tEZqABtMFEHB14xgiPeRBMtcrWJuE5VClq4TRMMtxrAYdmdkEGJEtA6DH-E5o=w800-no">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://kywk.github.io/software/android/awesome_launcher">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>[Android] Awesome launcher | MooCow Notes</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/moco/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MooCow Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/moco/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/moco/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/moco/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kywk.github.io/moco/software/android/awesome_launcher.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Moo Cow (Aka. kywk) <kywk.id@gmail.com>">
+      <meta itemprop="description" content="Write programs that do one thing and do it well. Write programs to work together. Write programs to handle text streams, because that is a universal interface.">
+      <meta itemprop="image" content="/moco/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MooCow Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">[Android] Awesome launcher
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-12-31 23:59:59" itemprop="dateCreated datePublished" datetime="2018-12-31T23:59:59+08:00">2018-12-31</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/moco/software/android/awesome_launcher.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="software/android/awesome_launcher.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="廢言"><a href="#廢言" class="headerlink" title="廢言"></a>廢言</h2><p>個人以為 Android 和 iOS, Windows Phone 最大的差別就是個人化的程度截然不同，
+換個 Launcher 就有截然不同的操作體驗了，不喜歡原廠的 Launcher？換掉就是了！</p>
+<p>本篇紀錄與簡單介紹一些個人喜愛的 Android Launcher。</p>
+<h3 id="廢言還分章節"><a href="#廢言還分章節" class="headerlink" title="廢言還分章節 !?"></a>廢言還分章節 !?</h3><p>會想寫 Android Apk 推薦文，主要是因為 Google Play 實在不人性，
+竟然無法搜尋自己所擁有的 Apk，只能在 My apps &amp; games 裡慢慢滑。
+在不同手機上安裝時，都要花上好一段時間查找。</p>
+<p>決定把自己喜歡的 Apk 整理個列表和連結，日後需要重新安裝時能較快找到。</p>
+<p>其實並不喜歡寫推薦文，總覺得自己喜歡的東西別人不見得愛。<br>不過換個角度想，寫寫自己為何喜歡，留個紀錄，不是強迫消費啊～</p>
+<a id="more"></a>
+<h2 id="Lawnchair-launcher"><a href="#Lawnchair-launcher" class="headerlink" title="Lawnchair launcher"></a><a href="https://goo.gl/44ByX8" target="_blank" rel="noopener">Lawnchair launcher</a></h2><h2 id="SquareHome-2-Win-10-style"><a href="#SquareHome-2-Win-10-style" class="headerlink" title="SquareHome 2 - Win 10 style"></a><a href="https://goo.gl/GRbmtZ" target="_blank" rel="noopener">SquareHome 2 - Win 10 style</a></h2><p><img src="https://lh3.googleusercontent.com/8y0LMB9nF8UBf4VCQFOFkrK5fuf0Q_YuV1fDb_RfRbpBPGndYVFjbyPR_mr1BfeGMF2W36QQ7fWghUTueNMfLYX1x-k49sYO6RT0KLH9_PqeRdcaO9XvFXmfr0xnAdnNimPgPO30pJE4pQ6Xq3lyyzDkeoj0YCvqDAWMbgA7FsxBydYox7TYGVZTlVEDhQFXw8NR4_T-7lWFRoz9-JhPCex8CJ7bfh5si1WzBVZ9d_stieqbrA77YyL1HYPyibdPWp52_aeT5LLFNeR61Cs_BVHlWQSMhZ5w5wZwvFZab0bZV-PfNLpU_MrmZS5eicMXOdKA5bIzkmVBVVB8ZTTVstvja_4TH5i4VndlI1oYt3SII6V3jzJJ8N1XTrezmQTaZAE5xK16xkYwytkv3DDjgghzAYM-GHKv8iv6Fn0EEcKeD4u4r7nAHp7MyArc-ZjUjoy6xGKg3t9CksEf0po1h9y5GNC9fHifC_dcYikObAEJ5AzPE5UMaZ4EGatioB5tH7uUYk99Ir28rAkZuNGDHQlHir44YpGZzt_tEZqABtMFEHB14xgiPeRBMtcrWJuE5VClq4TRMMtxrAYdmdkEGJEtA6DH-E5o=w800-no" alt></p>
+<p>多數 Android Launcher 皆支援多個桌面，不同桌面可以擺放不同 App 或 Widget。
+手機上操作沒問題，但在平板體驗上，個人總覺得桌面的切換很不直覺。
+比起桌面，我更喜歡 Windows Phone <strong>動態磚的連續滾動</strong>。</p>
+<p>SquareHome 2 的動態磚排列預設是垂直排列，在設定裡設為平板模式，就變成橫向排列。
+平板模式下同一個 Page 裡橫向和垂直動態磚都可以無限制擺放，
+調整 Tile Size 可依個人喜好排成橫式或是直式捲動。</p>
+<p><img src="https://lh3.googleusercontent.com/yc0JCTrEh_ybYgigESUj6WLNfAvj_0zqKErJJN1v4-EIEZzlDricnO2ng7njqeqAcNnC5w-A8TfXa0lB3RiMb6aSZPeHI9kq3Ge1FT2E2Wk2w4VuSaZK3otK3uUm8wc1X6r4Pc8OucEL8V-ftYlYuE9uFuG14-8mJ6RnKOFFXS-t751OoFdWzdhMJV3ZVyRZyZD5_eFR0KDjdiI3Jgg4Gp986wYlT4nRmJ0yWforloN0uVwjdYpc_TisylBVOTWBOE8ltx7RM1fCPpRSC0WHKVSs-xLIfJKUixto8Qp2Jljim418Nih8ZI1NGkE7cLbOzLY6tvJFDuGxUYtAueVxQQkVrzJTLeX1QFk-mW39HaCeToxx1sMOI7zJdWpyVaEpujEsI-AzwciLmrJ1HkH7yB23yQPVUB2KWi_DZwmAzxWpp00tQ0JrMm4o3PKP60VweY4cEPQtazleOU8WtrhOTeMiIlzC5svHHB6C4DH15pLbZRuQuvidiv4_MGybmu6CknOH28b2Bk212RE2waoPq1_XQ4hXpLLUlZDn0pkjTu8Xz9_PGAdUCYLIC4YwO0AxLLh4p6O1pL-X8oBnJtkopSTHIxZBHbdD=w800-no" alt></p>
+<p>在平板上 SquareHome 2 可說是我最愛的 Launcher 了，很喜歡 Windows Phone 動態磚的設計概念，
+而 SquareHome 成功結合了動態磚和 Android 的特點，Widget 放在動態磚裡，不但實用且美觀啊。</p>
+<p>要說 SquareHome 的缺點，目前最大的感受大概是資料夾的過場動畫太頓了。
+相較其他操作的感受，點選資料夾時會有一種卡住的感覺。期待這點日後能被改善。</p>
+<p><em>see also</em></p>
+<ul>
+<li><a href="http://www.androidcentral.com/getting-more-microsoft-apps-and-feel-your-android" target="_blank" rel="noopener">How to give your Android phone a Microsoft makeover | Android Central</a></li>
+</ul>
+<h2 id="HTC-Sense-Home"><a href="#HTC-Sense-Home" class="headerlink" title="HTC Sense Home"></a><a href="https://goo.gl/X16MNb" target="_blank" rel="noopener">HTC Sense Home</a></h2><p><a href="http://goo.gl/zYscZJ" target="_blank" rel="noopener"><strong>HTC Sense™ Home - XDA Developer</strong></a></p>
+<h2 id="HomeUX"><a href="#HomeUX" class="headerlink" title="HomeUX"></a><a href="https://goo.gl/n5yXeN" target="_blank" rel="noopener">HomeUX</a></h2>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/moco/tags/apps/" rel="tag"># apps</a>
+          
+            <a href="/moco/tags/awesome/" rel="tag"># awesome</a>
+          
+            <a href="/moco/tags/android/" rel="tag"># android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/moco/web/api_RESTful-API-spec.html" rel="prev" title="RESTful API: API Doc Specs Awesome Lists">
+                RESTful API: API Doc Specs Awesome Lists <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/moco/images/avatar.jpg" alt="Moo Cow (Aka. kywk) <kywk.id@gmail.com>">
+            
+              <p class="site-author-name" itemprop="name">Moo Cow (Aka. kywk) <kywk.id@gmail.com></kywk.id@gmail.com></p>
+              <div class="site-description motion-element" itemprop="description">Write programs that do one thing and do it well. Write programs to work together. Write programs to handle text streams, because that is a universal interface.</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/moco/archives/">
+                
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/moco/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/kywk" title="GitHub &rarr; https://github.com/kywk" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/kywkid" title="Twitter &rarr; https://twitter.com/kywkid" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:kywk.id@gmail.com" title="E-Mail &rarr; mailto:kywk.id@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#廢言"><span class="nav-number">1.</span> <span class="nav-text">廢言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#廢言還分章節"><span class="nav-number">1.1.</span> <span class="nav-text">廢言還分章節 !?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lawnchair-launcher"><span class="nav-number">2.</span> <span class="nav-text">Lawnchair launcher</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SquareHome-2-Win-10-style"><span class="nav-number">3.</span> <span class="nav-text">SquareHome 2 - Win 10 style</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTC-Sense-Home"><span class="nav-number">4.</span> <span class="nav-text">HTC Sense Home</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HomeUX"><span class="nav-number">5.</span> <span class="nav-text">HomeUX</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Moo Cow (Aka. kywk) <kywk.id@gmail.com></kywk.id@gmail.com></span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/moco/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/moco/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/moco/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/moco/js/utils.js?v=7.1.2"></script>
+
+  <script src="/moco/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/moco/js/schemes/muse.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/moco/js/scrollspy.js?v=7.1.2"></script>
+<script src="/moco/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/moco/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://kywk-moco.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://kywk.github.io/software/android/awesome_launcher.html";
+    this.page.identifier = "software/android/awesome_launcher.html";
+    this.page.title = '[Android] Awesome launcher';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://kywk-moco.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    window.addEventListener('load', loadComments, false);
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

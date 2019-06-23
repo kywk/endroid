@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/moco/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/moco/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/moco/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/moco/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/moco/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/moco/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/moco/',
+    scheme: 'Mist',
+    version: '7.1.2',
+    sidebar: {"position":"left","width":280,"display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="What’s New in MySQL 8.0在 COSCUP 上被洗腦 MySQL 8.0.MySQL 8.0 大改版帶來大量新功能與更高的效能, 也產生相容性等問題, 商業實務要在生產環境上使用仍需評估.  但技術上諸多新特點真的令人心動, 故決定花些時間研究了解. MySQL 8.0 有相當多的改進, 以下列出我有興趣的項目, 其他新特點可以參考文末相關連結.  性能: 根據官方文件顯示,">
+<meta name="keywords" content="container,mysql,database,docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Docker] MySQL 8 server as docker container">
+<meta property="og:url" content="http://kywk.github.io/cloud/docker_mysql8.html">
+<meta property="og:site_name" content="MooCow Notes">
+<meta property="og:description" content="What’s New in MySQL 8.0在 COSCUP 上被洗腦 MySQL 8.0.MySQL 8.0 大改版帶來大量新功能與更高的效能, 也產生相容性等問題, 商業實務要在生產環境上使用仍需評估.  但技術上諸多新特點真的令人心動, 故決定花些時間研究了解. MySQL 8.0 有相當多的改進, 以下列出我有興趣的項目, 其他新特點可以參考文末相關連結.  性能: 根據官方文件顯示,">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-01-01T04:59:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Docker] MySQL 8 server as docker container">
+<meta name="twitter:description" content="What’s New in MySQL 8.0在 COSCUP 上被洗腦 MySQL 8.0.MySQL 8.0 大改版帶來大量新功能與更高的效能, 也產生相容性等問題, 商業實務要在生產環境上使用仍需評估.  但技術上諸多新特點真的令人心動, 故決定花些時間研究了解. MySQL 8.0 有相當多的改進, 以下列出我有興趣的項目, 其他新特點可以參考文末相關連結.  性能: 根據官方文件顯示,">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://kywk.github.io/cloud/docker_mysql8">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>[Docker] MySQL 8 server as docker container | MooCow Notes</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/moco/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MooCow Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/moco/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/moco/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/moco/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kywk.github.io/moco/cloud/docker_mysql8.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Moo Cow (Aka. kywk) <kywk.id@gmail.com>">
+      <meta itemprop="description" content="Write programs that do one thing and do it well. Write programs to work together. Write programs to handle text streams, because that is a universal interface.">
+      <meta itemprop="image" content="/moco/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MooCow Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">[Docker] MySQL 8 server as docker container
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-01-01 12:59:59" itemprop="dateCreated datePublished" datetime="2019-01-01T12:59:59+08:00">2019-01-01</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/moco/cloud/docker_mysql8.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="cloud/docker_mysql8.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="What’s-New-in-MySQL-8-0"><a href="#What’s-New-in-MySQL-8-0" class="headerlink" title="What’s New in MySQL 8.0"></a><a href="https://goo.gl/6F7cqb" target="_blank" rel="noopener">What’s New in MySQL 8.0</a></h2><p>在 COSCUP 上被洗腦 MySQL 8.0.<br>MySQL 8.0 大改版帶來大量新功能與更高的效能, 也產生相容性等問題, 商業實務要在生產環境上使用仍需評估. 
+但技術上諸多新特點真的令人心動, 故決定花些時間研究了解.
+MySQL 8.0 有相當多的改進, 以下列出我有興趣的項目, 其他新特點可以參考文末相關連結.</p>
+<ul>
+<li><p><strong>性能</strong>: 根據官方文件顯示, MySQL 8.0 的速度比 MySQL 5.7 快上兩倍.</p>
+</li>
+<li><p><strong><a href="https://goo.gl/WLPQvY" target="_blank" rel="noopener">Window Functions</a></strong>, <strong><a href="https://goo.gl/4k6kLb" target="_blank" rel="noopener">CTE</a></strong>: 
+許多現代 SQL 都提供窗口函式, 實現多行聚合計算, 並將計算後的結果附加到單行內. 如此可以提供新的查詢方式. 
+Ex: <a href="https://goo.gl/zpAii7" target="_blank" rel="noopener">rank()</a><br>而 CTE 通用表示式可以把查詢語法更結構化, 透過迴查詢能寫出層次清晰的複雜查詢語法, 修改維護都更容易. 
+值得一提的是, 從 MySQL 分支出來的 mariadb 亦支援這兩個功能, 不過語法不一定通用就是了. 
+<a href="https://goo.gl/1FgjA5" target="_blank" rel="noopener">MySQL 8 vs. MariaDB: Comparison of Window Functions and CTEs - DZone Database</a></p>
+</li>
+<li><p><a href="https://goo.gl/PK0Lez" target="_blank" rel="noopener">JSON</a> and <a href="https://goo.gl/CA3eM6" target="_blank" rel="noopener">Document Store</a>: 
+MySQL 5.7 開始支援原生 JSON 格式, 和 NoSQL 資料庫競爭. 
+MySQL 8.0 除了擴充了對 JSON 的支援外, 亦加強了 JSON 查詢的效能.
+而新的聚合函式則讓開發者在同一個查詢語法中, 結合 MySQL 原生結構化資料與 JSON 資料.<br>MySQL 8.0 的文件儲存提供了 schema-less 的 JSON 資料更完整的 transcation 和 ACID 支援.</p>
+<p>MySQL 並推出了 X Dev API, 提供開發者透過更高階的物件操作語法來存取資料庫.
+這是讓我決定花時間摸索 MySQL 8.0 的重要原因, 想把玩 X Dev API 只能弄個 MySQL 8.0 環境跑.</p>
+</li>
+</ul>
+<a id="more"></a>
+<h2 id="MySQL-8-0-as-docker-container"><a href="#MySQL-8-0-as-docker-container" class="headerlink" title="MySQL 8.0 as docker container"></a>MySQL 8.0 as docker container</h2><ol>
+<li><p>Start a mysql server instance</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="builtin-name">run</span> --name some-mysql -e <span class="attribute">MYSQL_ROOT_PASSWORD</span>=my-secret-pw -d mysql:tag</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>--name string</code> Assign a name to the container  <ul>
+<li><code>--name some-mysql</code> the name you want to assign to your container</li>
+</ul>
+</li>
+<li><code>-e, --env list</code> Set environment variables<ul>
+<li><code>MYSQL_ROOT_PASSWORD=my-secret-pw</code> the password to be set for the MySQL root user</li>
+</ul>
+</li>
+<li><code>-d, --detach</code> Run container in background and print container ID</li>
+<li><code>mysql:tag</code> docker image name</li>
+</ul>
+</li>
+<li><p>Using a custom MySQL configuration file</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run --name some-mysql -v <span class="regexp">/my/</span><span class="string">custom:</span><span class="regexp">/etc/</span>mysql/conf.d -e MYSQL_ROOT_PASSWORD=my-secret-pw -d <span class="string">mysql:</span>tag</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-v, --volume list</code> Bind mount a volume<ul>
+<li><code>-v /my/custom:/etc/mysql/conf.d</code> 
+start a new MySQL instance uses the combined startup settings from <code>/etc/mysql/my.cnf</code> and <code>/etc/mysql/conf.d/config-file.cnf</code>, 
+with settings from the latter taking precedence.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Where to Store Data </p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run --name some-mysql -v <span class="regexp">/my/</span>own<span class="regexp">/datadir:/</span>var<span class="regexp">/lib/</span>mysql <span class="regexp">/my/</span><span class="string">custom:</span><span class="regexp">/etc/</span>mysql/conf.d -e MYSQL_ROOT_PASSWORD=my-secret-pw -d <span class="string">mysql:</span>tag</span><br></pre></td></tr></table></figure>
+<p>mounts the <code>/my/own/datadir</code> directory from the underlying host system as <code>/var/lib/mysql</code> inside the container, where MySQL by default will write its data files.</p>
+</li>
+<li><p>Access port </p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run --name some-mysql -p <span class="number">3306</span>:<span class="number">3306</span> -p <span class="number">33060</span>:<span class="number">33060</span> -v <span class="regexp">/my/</span>own<span class="regexp">/datadir:/</span>var<span class="regexp">/lib/</span>mysql <span class="regexp">/my/</span><span class="string">custom:</span><span class="regexp">/etc/</span>mysql/conf.d -e MYSQL_ROOT_PASSWORD=my-secret-pw -d <span class="string">mysql:</span>tag</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-p, --publish list</code> Publish a container’s port(s) to the host<ul>
+<li><code>-p 3306:3306</code></li>
+<li><code>-p 33060:33060</code> MySQL XDevAPI X Plugin listening to default port <code>33060</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="My-MySQL-8-0-workspace-setup"><a href="#My-MySQL-8-0-workspace-setup" class="headerlink" title="My MySQL 8.0 workspace setup"></a>My MySQL 8.0 workspace setup</h2><p>個人開發環境有幾個需求:</p>
+<ol>
+<li>利用 Dropbox 保持工作資料在多電腦同步</li>
+<li>開發環境帳密和生產環境使用的帳密不同</li>
+<li>絕不透過 root 來存取 MySQL 資料</li>
+</ol>
+<h3 id="Setup-working-folder-on-Dropbox"><a href="#Setup-working-folder-on-Dropbox" class="headerlink" title="Setup working folder on Dropbox"></a>Setup working folder on Dropbox</h3><p>關於第一個需求, 可把 mysql 的 data/log/config 等資料夾建立在 Dropbox 資料夾下即可.</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~<span class="regexp">/Dropbox/project</span><span class="regexp">/docker/mysql</span>8/conf</span><br><span class="line">mkdir ~<span class="regexp">/Dropbox/project</span><span class="regexp">/docker/mysql</span>8/data</span><br></pre></td></tr></table></figure>
+<p>為了方便啟動與停止 container, 我另寫了幾個 shell scripts 放在 mysql8 資料夾下.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">export MYSQL8_HOME=&quot;$KYWK_HOME/Dropbox/project/docker/mysql8&quot;</span><br><span class="line"></span><br><span class="line">#run service</span><br><span class="line">docker run --name mysql8 -d -p 3306:3306 -p 33060:33060 \</span><br><span class="line">  -e MYSQL_ROOT_PASSWORD=pw123456 \</span><br><span class="line">  -v $MYSQL8_HOME/data:/var/lib/mysql \</span><br><span class="line">  -v $MYSQL8_HOME/conf:/etc/mysql/conf.d \</span><br><span class="line">  mysql</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container restart mysql8</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container stop mysql8</span><br></pre></td></tr></table></figure>
+<h3 id="Setup-root-user-PRIVILEGES"><a href="#Setup-root-user-PRIVILEGES" class="headerlink" title="Setup root user PRIVILEGES"></a>Setup root user PRIVILEGES</h3><p>對於第二、三個設計需求, 新增一個 MySQL 使用者帳號即可.  </p>
+<p>MySQL image 預設 root 無法透過網路連線來 Grant 其他使用者權限. 
+可直接從進入 mysql container 去新增使用者. 
+或進入 mysql container 後把網路 GRANT 權限打開, 再透過網路新增設定其他使用者.</p>
+<p>以上兩種方法都必須先進入 mysql container, 指令如下: 
+<code>$ docker exec -ti mysql8 mysql</code></p>
+<p>為方便往後操作, 我選擇進入 container 後把 <code>root@%</code> 的 <code>Grant_priv</code> 打開.</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ docker exec <span class="params">-ti</span> mysql8 mysql <span class="params">-p</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// at mysql shell</span></span><br><span class="line">mysql&gt; GRANT <span class="literal">ALL</span> <span class="keyword">ON</span> *.* <span class="keyword">TO</span> <span class="string">'root'</span>@<span class="string">'%'</span> <span class="keyword">WITH</span> GRANT OPTION;</span><br><span class="line">mysql&gt; FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+<p>如此一來, 即可 root 在外部連線狀況下來新增修改使用者權限. 較通用於各種 MySQL Client 工具.</p>
+<h3 id="Setup-management-user"><a href="#Setup-management-user" class="headerlink" title="Setup management user"></a>Setup management user</h3><p>Ex: 新增管理使用者
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysql -h <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> -u root -p &lt; kywk.sql</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">use mysql</span><br><span class="line">CREATE USER &apos;kywk&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;password&apos;;</span><br><span class="line">GRANT ALL PRIVILEGES ON *.* TO &apos;kywk&apos;@&apos;localhost&apos; WITH GRANT OPTION;</span><br><span class="line">CREATE USER &apos;kywk&apos;@&apos;%&apos; IDENTIFIED BY &apos;password&apos;;</span><br><span class="line">GRANT ALL PRIVILEGES ON *.* TO &apos;kywk&apos;@&apos;%&apos; WITH GRANT OPTION;</span><br><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+<p>MySQL 8 新增了<a href="https://goo.gl/CLwvjk" target="_blank" rel="noopener">角色管理 (Role) 的功能</a>, 
+而設定使用者權限的語法也和 MySQL 5.x 不完全相容. 要翻翻文件. </p>
+<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>發文時研究 MySQL 8.0 及 XDev API 單純是技術上跟隨, 還未考慮運用到生產環境上.
+一來目前工作上沒有足夠 IT 能量自行監控管理資料庫服務, AWS RDS 分攤了這部份需求.
+二來 ORACLE 實在太惡名昭彰, 情感上想離他越遠越好啊. </p>
+<p>最重要的, MySQL 8 的大改版, 新增很多功能外也造成不少問題.
+在設置測試環境時, 就發生使用者權限設定語法不同及 Sequel Pro 無法連上 MySQL 8 伺服器的問題.
+使用者權限管理語法查文件後已找到解法. 
+Sequel Pro 的 Github 上也針對該 issue 進行修正, 發文時狀態為 <code>Fixed-AwaitingRelease</code>. </p>
+<p>何時會在生產環境使用上 MySQL 8 尚未得而知, 也許經過幾篇踩雷心得後再說吧.
+下篇來踩踩 MySQL X Dev API 的雷.</p>
+<div class="surf"><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li>What’s new in MySQL 8.0<ul>
+<li><a href="https://goo.gl/WLPQvY" target="_blank" rel="noopener">Window Functions</a> </li>
+<li><a href="https://goo.gl/4k6kLb" target="_blank" rel="noopener">CTE</a></li>
+</ul>
+</li>
+<li><a href="https://goo.gl/xu1PFB" target="_blank" rel="noopener">MySQL 8.0 正式版 8.0.11 发布：比 MySQL 5.7 快 2 倍 - 开源中国</a><ul>
+<li><a href="https://goo.gl/m6A5P6" target="_blank" rel="noopener">MySQL 8 新特性介绍 | 程序师 - 程序员、编程语言、软件开发、编程技术</a></li>
+<li><a href="https://goo.gl/zpAii7" target="_blank" rel="noopener">MySQL 8.0 的关系数据库新特性 - 后端 - 掘金</a></li>
+<li><a href="https://goo.gl/KdUrQY" target="_blank" rel="noopener">10 个开发者必知的 MySQL 8.0 新功能 | Laravel China 社区</a></li>
+<li><a href="https://goo.gl/Yqzbhk" target="_blank" rel="noopener">MySQL 8.0备受瞩目的新特性大放送！ - MySQL</a></li>
+</ul>
+</li>
+<li><a href="https://hub.docker.com/_/mysql/" target="_blank" rel="noopener">mysql - Docker Hub</a><ul>
+<li><a href="https://goo.gl/W3cXuZ" target="_blank" rel="noopener">MySQL Docker Containers: Understanding the basics | Severalnines</a></li>
+<li><a href="https://goo.gl/zsj4B2" target="_blank" rel="noopener">基于 Docker 安装 MySQL - CSDN博客</a></li>
+<li><a href="https://goo.gl/sz6XGO" target="_blank" rel="noopener">MySQL · Docker學習筆記</a></li>
+<li><a href="https://goo.gl/6UiPgJ" target="_blank" rel="noopener">docker安裝mysql，以及主從和主備切換 - 程序員的後花園</a></li>
+<li><a href="https://goo.gl/oRvkZD" target="_blank" rel="noopener">用 Docker 建立多種資料庫的開發環境 | Jonny Huang 的學習筆記</a></li>
+</ul>
+</li>
+<li><strong>Troubleshoot</strong><ul>
+<li><a href="https://goo.gl/fxRBez" target="_blank" rel="noopener">sql - MySQL 8 create new user with password not working - Stack Overflow</a></li>
+<li><a href="https://goo.gl/oaxHR7" target="_blank" rel="noopener">mysql - Authentication plugin ‘caching_sha2_password’ cannot be loaded - Stack Overflow</a><ul>
+<li><a href="https://goo.gl/G5VZm4" target="_blank" rel="noopener">mysql8 ：客户端连接caching-sha2-password问题 - CSDN博客</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/moco/tags/container/" rel="tag"># container</a>
+          
+            <a href="/moco/tags/mysql/" rel="tag"># mysql</a>
+          
+            <a href="/moco/tags/database/" rel="tag"># database</a>
+          
+            <a href="/moco/tags/docker/" rel="tag"># docker</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/moco/web/api_RESTful-API-awesome.html" rel="next" title="RESTful API: Getting Start & Awesome Lists">
+                <i class="fa fa-chevron-left"></i> RESTful API: Getting Start & Awesome Lists
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/moco/software/mac_software.html" rel="prev" title="[Mac] Favorite Applications 2019">
+                [Mac] Favorite Applications 2019 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/moco/images/avatar.jpg" alt="Moo Cow (Aka. kywk) <kywk.id@gmail.com>">
+            
+              <p class="site-author-name" itemprop="name">Moo Cow (Aka. kywk) <kywk.id@gmail.com></kywk.id@gmail.com></p>
+              <div class="site-description motion-element" itemprop="description">Write programs that do one thing and do it well. Write programs to work together. Write programs to handle text streams, because that is a universal interface.</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/moco/archives/">
+                
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/moco/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/kywk" title="GitHub &rarr; https://github.com/kywk" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/kywkid" title="Twitter &rarr; https://twitter.com/kywkid" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:kywk.id@gmail.com" title="E-Mail &rarr; mailto:kywk.id@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#What’s-New-in-MySQL-8-0"><span class="nav-number">1.</span> <span class="nav-text">What’s New in MySQL 8.0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL-8-0-as-docker-container"><span class="nav-number">2.</span> <span class="nav-text">MySQL 8.0 as docker container</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#My-MySQL-8-0-workspace-setup"><span class="nav-number">3.</span> <span class="nav-text">My MySQL 8.0 workspace setup</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Setup-working-folder-on-Dropbox"><span class="nav-number">3.1.</span> <span class="nav-text">Setup working folder on Dropbox</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Setup-root-user-PRIVILEGES"><span class="nav-number">3.2.</span> <span class="nav-text">Setup root user PRIVILEGES</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Setup-management-user"><span class="nav-number">3.3.</span> <span class="nav-text">Setup management user</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#後記"><span class="nav-number">4.</span> <span class="nav-text">後記</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">4.1.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Moo Cow (Aka. kywk) <kywk.id@gmail.com></kywk.id@gmail.com></span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/moco/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/moco/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/moco/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/moco/js/utils.js?v=7.1.2"></script>
+
+  <script src="/moco/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/moco/js/schemes/muse.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/moco/js/scrollspy.js?v=7.1.2"></script>
+<script src="/moco/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/moco/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://kywk-moco.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://kywk.github.io/cloud/docker_mysql8.html";
+    this.page.identifier = "cloud/docker_mysql8.html";
+    this.page.title = '[Docker] MySQL 8 server as docker container';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://kywk-moco.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    window.addEventListener('load', loadComments, false);
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

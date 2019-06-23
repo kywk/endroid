@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/moco/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/moco/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/moco/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/moco/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/moco/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/moco/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/moco/',
+    scheme: 'Mist',
+    version: '7.1.2',
+    sidebar: {"position":"left","width":280,"display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="PrefaceVisual Studio Code 在微軟及社群頻繁的維護與更新下, 功能愈來愈齊全強大,  社群裡的分享也愈來愈多人使用 VS Code 進行開發 Demo, 聲勢已經超越 Sublime Text 許多. 因介面習慣, 我大部份專案仍以 Sublime Text 進行開發, 而 .NET Core 專案上使用 VS Code 進行開發.  不過近來也漸漸使用 VS Code 在">
+<meta name="keywords" content="apps,vscode,develop">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[VS Code] VS Code Extensions, 2019">
+<meta property="og:url" content="http://kywk.github.io/software/vscode_extensions.html">
+<meta property="og:site_name" content="MooCow Notes">
+<meta property="og:description" content="PrefaceVisual Studio Code 在微軟及社群頻繁的維護與更新下, 功能愈來愈齊全強大,  社群裡的分享也愈來愈多人使用 VS Code 進行開發 Demo, 聲勢已經超越 Sublime Text 許多. 因介面習慣, 我大部份專案仍以 Sublime Text 進行開發, 而 .NET Core 專案上使用 VS Code 進行開發.  不過近來也漸漸使用 VS Code 在">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://media.giphy.com/media/xT9IglKxSqs2Wdwq2c/source.gif">
+<meta property="og:image" content="https://github.com/formulahendry/vscode-auto-close-tag/raw/master/images/st3.gif">
+<meta property="og:image" content="https://raw.githubusercontent.com/Jason-Rev/vscode-spell-checker/master/client/images/suggestions.gif">
+<meta property="og:image" content="https://github.com/spywhere/vscode-guides/raw/master/images/screenshot.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/oderwat/vscode-indent-rainbow/master/assets/example.png">
+<meta property="og:image" content="https://github.com/CoenraadS/BracketPair/raw/master/images/example.png">
+<meta property="og:image" content="https://github.com/mikestead/vscode-dotenv/raw/master/images/screenshot.png">
+<meta property="og:image" content="https://github.com/formulahendry/vscode-code-runner/raw/master/images/usage.gif">
+<meta property="og:image" content="https://quokkajs.com/assets/img/vsc1.gif">
+<meta property="og:image" content="https://github.com/alefragnani/vscode-bookmarks/raw/master/images/bookmarks-list-from-all-files.gif">
+<meta property="og:image" content="https://github.com/wayou/vscode-todo-highlight/raw/master/assets/material-night-eighties.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/gitlens-preview.gif">
+<meta property="og:image" content="https://github.com/aaron-bond/better-comments/raw/master/images/better-comments.PNG">
+<meta property="og:updated_time" content="2019-03-21T08:11:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[VS Code] VS Code Extensions, 2019">
+<meta name="twitter:description" content="PrefaceVisual Studio Code 在微軟及社群頻繁的維護與更新下, 功能愈來愈齊全強大,  社群裡的分享也愈來愈多人使用 VS Code 進行開發 Demo, 聲勢已經超越 Sublime Text 許多. 因介面習慣, 我大部份專案仍以 Sublime Text 進行開發, 而 .NET Core 專案上使用 VS Code 進行開發.  不過近來也漸漸使用 VS Code 在">
+<meta name="twitter:image" content="https://media.giphy.com/media/xT9IglKxSqs2Wdwq2c/source.gif">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://kywk.github.io/software/vscode_extensions">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>[VS Code] VS Code Extensions, 2019 | MooCow Notes</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/moco/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MooCow Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/moco/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/moco/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/moco/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kywk.github.io/moco/software/vscode_extensions.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Moo Cow (Aka. kywk) <kywk.id@gmail.com>">
+      <meta itemprop="description" content="Write programs that do one thing and do it well. Write programs to work together. Write programs to handle text streams, because that is a universal interface.">
+      <meta itemprop="image" content="/moco/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MooCow Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">[VS Code] VS Code Extensions, 2019
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-03-21 16:11:58" itemprop="dateCreated datePublished" datetime="2019-03-21T16:11:58+08:00">2019-03-21</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/moco/software/vscode_extensions.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="software/vscode_extensions.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p><a href="https://code.visualstudio.com/" target="_blank" rel="noopener">Visual Studio Code</a> 在微軟及社群頻繁的維護與更新下, 功能愈來愈齊全強大, 
+社群裡的分享也愈來愈多人使用 VS Code 進行開發 Demo, 聲勢已經超越 Sublime Text 許多.</p>
+<p>因介面習慣, 我大部份專案仍以 Sublime Text 進行開發, 而 .NET Core 專案上使用 VS Code 進行開發. 
+不過近來也漸漸使用 VS Code 在其他專案上.</p>
+<p>VS Code 擴充套件實在非常多, 幾乎不同語言都有完整生態系的支援. 個人套件清單列舉如下:<br>這篇也許定期更新, 並加上 ChangeLog.</p>
+<a id="more"></a>
+<h2 id="Settings-Sync"><a href="#Settings-Sync" class="headerlink" title="Settings Sync "></a><a href="https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync" target="_blank" rel="noopener">Settings Sync</a> </h2><p>透過 GitHub Gist同步設定檔和安裝的套件, 支援背景自動同步
+<img src="https://media.giphy.com/media/xT9IglKxSqs2Wdwq2c/source.gif" alt></p>
+<h2 id="Core-amp-common"><a href="#Core-amp-common" class="headerlink" title="Core &amp; common"></a>Core &amp; common</h2><h3 id="Editing"><a href="#Editing" class="headerlink" title="Editing"></a>Editing</h3><ul>
+<li><p><a href="https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig" target="_blank" rel="noopener">EditorConfig for VS Code</a><br>EditorConfig 是個幫助團隊有統一規範的工具, 尤其遇到團隊中有人用 <strong>不同的</strong> 作業系統或編輯器時， 統一各種的不同</p>
+</li>
+<li><p><a href="https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag" target="_blank" rel="noopener">Auto Close Tag</a><br>把右括號或結束標籤補上, VS Code 雖有內建基本補完功能, 
+這個套件支援更多符號和設定, 例如打 <code>&lt;/</code> 的時候也幫我補上 HTML close tag。
+<img src="https://github.com/formulahendry/vscode-auto-close-tag/raw/master/images/st3.gif" alt></p>
+</li>
+<li><p><a href="https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker" target="_blank" rel="noopener">Code Spell Checker</a><br>所有程式的變數或是方法命名都應該是 <strong>有意義</strong> 的, 不是隨便的縮寫.
+這個套件可以檢查英文單字是否有拼錯, 且支援駝峰命名
+<img src="https://raw.githubusercontent.com/Jason-Rev/vscode-spell-checker/master/client/images/suggestions.gif" alt></p>
+</li>
+</ul>
+<h3 id="Look-amp-feel"><a href="#Look-amp-feel" class="headerlink" title="Look &amp; feel"></a>Look &amp; feel</h3><ul>
+<li><p><a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode" target="_blank" rel="noopener">Prettier — Code formatter</a><br>可以與 project 中的 prettier 設定檔互動. 設定自動 format 的時機點, 例如: 存檔就 format</p>
+</li>
+<li><p><a href="https://marketplace.visualstudio.com/items?itemName=spywhere.guides" target="_blank" rel="noopener">Guides</a><br>在程式開關符號 (例如左右大括號) 拉一條線, 方便識別程式區塊
+<img src="https://github.com/spywhere/vscode-guides/raw/master/images/screenshot.png" alt></p>
+</li>
+<li><p><a href="https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow" target="_blank" rel="noopener">Indent-Rainbow</a>, 
+<a href="https://marketplace.visualstudio.com/items?itemName=SirTori.indenticator" target="_blank" rel="noopener">Indenticator</a><br>視覺化縮排, 兩個搭配可讓程式碼對齊與縮排更一目了然
+<img src="https://raw.githubusercontent.com/oderwat/vscode-indent-rainbow/master/assets/example.png" alt></p>
+</li>
+<li><p><a href="https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer" target="_blank" rel="noopener">Bracket Pair Colorizer</a><br>程式碼區塊的對應, 用不同顏色表示 <code>{}</code> <code>[]</code> <code>()</code> 的程式區塊, 異於區分
+<img src="https://github.com/CoenraadS/BracketPair/raw/master/images/example.png" alt></p>
+</li>
+<li><p><a href="https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv" target="_blank" rel="noopener">DotENV</a><br>讓 .env 檔也有 syntax 效果
+<img src="https://github.com/mikestead/vscode-dotenv/raw/master/images/screenshot.png" alt></p>
+</li>
+</ul>
+<h2 id="Coding"><a href="#Coding" class="headerlink" title="Coding"></a>Coding</h2><ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner" target="_blank" rel="noopener">Code Runner</a><br>支持多种语言的代码的立即执行
+<img src="https://github.com/formulahendry/vscode-code-runner/raw/master/images/usage.gif" alt></li>
+</ul>
+<h3 id="Languages"><a href="#Languages" class="headerlink" title="Languages"></a>Languages</h3><ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp" target="_blank" rel="noopener">C#</a><br>微軟基本的 C# 套件<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=Leopotam.csharpfixformat" target="_blank" rel="noopener">C# FixFormat</a><br>強化 VS Code 對於 C# 的 format 能力</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=jchannon.csharpextensions" target="_blank" rel="noopener">C# Extensions</a><br>強化 VS Code 對於 C# 的 Coding IntelliSense 能力</li>
+</ul>
+</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.Go" target="_blank" rel="noopener">Go</a> 
+VS Code 是寫 Go 目前最多人使用的 IDE, 這套可以涵蓋所有你寫 Go 時所需的功能</li>
+</ul>
+<h3 id="JavaScript-Node"><a href="#JavaScript-Node" class="headerlink" title="JavaScript, Node"></a>JavaScript, Node</h3><ul>
+<li><p><a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint" target="_blank" rel="noopener">ESLint</a><br>可以與 project 中的 <code>.eslintrc</code> 互動, 讓專案中的 ESLint 規則在 Coding 的時候就提醒是否有違反 ESLint 的規則</p>
+</li>
+<li><p><a href="https://marketplace.visualstudio.com/items?itemName=WallabyJs.quokka-vscode" target="_blank" rel="noopener">Quokka.js</a>,
+<a href="https://marketplace.visualstudio.com/items?itemName=WallabyJs.wallaby-vscode" target="_blank" rel="noopener">Wallaby.js</a><br>即時執行 JavaScript 程式碼內容, 快速 Demo 時很方便
+<img src="https://quokkajs.com/assets/img/vsc1.gif" alt></p>
+</li>
+<li><p><strong>code snippets</strong></p>
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=xabikos.JavaScriptSnippets" target="_blank" rel="noopener">JavaScript (ES6) code snippets</a><br>就是 JS 的 Snippets。也同時支援 TypeScript、React、Vue</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets" target="_blank" rel="noopener">ES7 React/Redux/GraphQL/React-Native snippets</a><br>這套涵蓋了 React/Redux/GraphQL/React-Native 的大部分 code snippets，如果你不想客製化自己的 snippets，這套會是你很好的選擇。</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=mgmcdermott.vscode-language-babel" target="_blank" rel="noopener">Babel JavaScript</a><br>JavaScript 語法高亮, 支援 ES201x, React JSX, Flow 與 GraphQL</li>
+</ul>
+</li>
+</ul>
+<h3 id="HTML5-Web-Frontend"><a href="#HTML5-Web-Frontend" class="headerlink" title="HTML5, Web Frontend"></a>HTML5, Web Frontend</h3><ul>
+<li><strong>Vue.js</strong>  <ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=octref.vetur" target="_blank" rel="noopener">Vetur</a><br>Vue 的集大成工具，寫 Vue 必裝</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=hollowtree.vue-snippets" target="_blank" rel="noopener">Vue 2 Snippets</a><br>Vue 2 的程式碼片段</li>
+</ul>
+</li>
+</ul>
+<h2 id="DevOps"><a href="#DevOps" class="headerlink" title="DevOps"></a>DevOps</h2><h2 id="Project-Management"><a href="#Project-Management" class="headerlink" title="Project Management"></a>Project Management</h2><ul>
+<li><p><a href="https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager" target="_blank" rel="noopener">Project Manager</a><br>如果同時有許多 project 要開發, 這個套件可以快速切換 project, 非常方便</p>
+</li>
+<li><p><a href="https://marketplace.visualstudio.com/items?itemName=alefragnani.Bookmarks" target="_blank" rel="noopener">Bookmarks</a><br>在開發時, 用書籤標記位置, 方便後續回來找位置
+<img src="https://github.com/alefragnani/vscode-bookmarks/raw/master/images/bookmarks-list-from-all-files.gif" alt></p>
+</li>
+<li><p><a href="https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight" target="_blank" rel="noopener">TODO Highlight</a><br>Highlight 程式碼中的 <code>TODO</code>, <code>FIXME</code> 註解, 還可以統整整個專案的 <strong>TODOs</strong>
+<img src="https://github.com/wayou/vscode-todo-highlight/raw/master/assets/material-night-eighties.png" alt></p>
+</li>
+</ul>
+<h3 id="SCM"><a href="#SCM" class="headerlink" title="SCM"></a>SCM</h3><ul>
+<li><p><a href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens" target="_blank" rel="noopener">Git Lens</a><br>必備的全能 Git 擴充功能, 可以在閃爍游標指到哪一行他就會顯示該行的 Git Blame, 
+可以快速查看是哪個 commit 修改的, 追 code 很方便.
+缺點是會塞很多功能在右鍵, 不喜歡的話記得設定調整
+<img src="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/gitlens-preview.gif" alt></p>
+</li>
+<li><p><a href="https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments" target="_blank" rel="noopener">Better Comments</a><br>编写更加人性化的注释
+<img src="https://github.com/aaron-bond/better-comments/raw/master/images/better-comments.PNG" alt></p>
+</li>
+</ul>
+<h2 id="Themes"><a href="#Themes" class="headerlink" title="Themes"></a>Themes</h2><ul>
+<li><p><a href="https://marketplace.visualstudio.com/items?itemName=Equinusocio.vsc-material-theme" target="_blank" rel="noopener">Material Theme</a>, 
+<a href="https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.Material-theme" target="_blank" rel="noopener">One Dark Pro</a><br>好的色彩主題是一定要裝的</p>
+</li>
+<li><p><a href="https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme" target="_blank" rel="noopener">Material Icon Theme</a><br>好的圖示主題也是一定要裝的</p>
+</li>
+</ul>
+<div class="surf"><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://goo.gl/T3GrLe" target="_blank" rel="noopener">2018 VS Code 設定大補帖與小技巧 – Ryan Hsu – Medium</a></li>
+<li><a href="https://goo.gl/EvcL13" target="_blank" rel="noopener">✨ Immensely upgrade your development environment with these Visual Studio Code extensions</a><br><a href="https://goo.gl/ZYDyC3" target="_blank" rel="noopener">30个极大提高开发效率的Visual Studio Code插件 | Fundebug博客</a></li>
+<li><a href="https://goo.gl/DnYCZF" target="_blank" rel="noopener">22 Best Visual Studio Code Extensions for Web Development ― Scotch.io</a></li>
+<li><strong>PHP</strong><ul>
+<li><a href="https://goo.gl/RbEWBp" target="_blank" rel="noopener">小克的 Visual Studio Code 必裝擴充套件（Extensions）私藏推薦</a></li>
+<li><a href="https://goo.gl/7eefBp" target="_blank" rel="noopener">Laravel - Visual Studio Code 擴充套件及功能推薦 « 關於網路那些事…</a></li>
+</ul>
+</li>
+<li><strong>Settings</strong><ul>
+<li><a href="https://goo.gl/VrQNwy" target="_blank" rel="noopener">Will 保哥的 VSCode 使用者設定檔</a></li>
+<li><a href="https://goo.gl/FYTBhz" target="_blank" rel="noopener">PoyChang’s Visual Studio Code Extension Pack</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/moco/tags/apps/" rel="tag"># apps</a>
+          
+            <a href="/moco/tags/vscode/" rel="tag"># vscode</a>
+          
+            <a href="/moco/tags/develop/" rel="tag"># develop</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/moco/software/mac_software.html" rel="next" title="[Mac] Favorite Applications 2019">
+                <i class="fa fa-chevron-left"></i> [Mac] Favorite Applications 2019
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/moco/cloud/cloud-native_database-survey.html" rel="prev" title="[DB] Survey of Cloud Native Database and NewSQL">
+                [DB] Survey of Cloud Native Database and NewSQL <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/moco/images/avatar.jpg" alt="Moo Cow (Aka. kywk) <kywk.id@gmail.com>">
+            
+              <p class="site-author-name" itemprop="name">Moo Cow (Aka. kywk) <kywk.id@gmail.com></kywk.id@gmail.com></p>
+              <div class="site-description motion-element" itemprop="description">Write programs that do one thing and do it well. Write programs to work together. Write programs to handle text streams, because that is a universal interface.</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/moco/archives/">
+                
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/moco/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/kywk" title="GitHub &rarr; https://github.com/kywk" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/kywkid" title="Twitter &rarr; https://twitter.com/kywkid" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:kywk.id@gmail.com" title="E-Mail &rarr; mailto:kywk.id@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Preface"><span class="nav-number">1.</span> <span class="nav-text">Preface</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Settings-Sync"><span class="nav-number">2.</span> <span class="nav-text">Settings Sync </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Core-amp-common"><span class="nav-number">3.</span> <span class="nav-text">Core &amp; common</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Editing"><span class="nav-number">3.1.</span> <span class="nav-text">Editing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Look-amp-feel"><span class="nav-number">3.2.</span> <span class="nav-text">Look &amp; feel</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Coding"><span class="nav-number">4.</span> <span class="nav-text">Coding</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Languages"><span class="nav-number">4.1.</span> <span class="nav-text">Languages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-Node"><span class="nav-number">4.2.</span> <span class="nav-text">JavaScript, Node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5-Web-Frontend"><span class="nav-number">4.3.</span> <span class="nav-text">HTML5, Web Frontend</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DevOps"><span class="nav-number">5.</span> <span class="nav-text">DevOps</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Project-Management"><span class="nav-number">6.</span> <span class="nav-text">Project Management</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SCM"><span class="nav-number">6.1.</span> <span class="nav-text">SCM</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Themes"><span class="nav-number">7.</span> <span class="nav-text">Themes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">8.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Moo Cow (Aka. kywk) <kywk.id@gmail.com></kywk.id@gmail.com></span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/moco/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/moco/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/moco/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/moco/js/utils.js?v=7.1.2"></script>
+
+  <script src="/moco/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/moco/js/schemes/muse.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/moco/js/scrollspy.js?v=7.1.2"></script>
+<script src="/moco/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/moco/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://kywk-moco.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://kywk.github.io/software/vscode_extensions.html";
+    this.page.identifier = "software/vscode_extensions.html";
+    this.page.title = '[VS Code] VS Code Extensions, 2019';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://kywk-moco.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    window.addEventListener('load', loadComments, false);
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
